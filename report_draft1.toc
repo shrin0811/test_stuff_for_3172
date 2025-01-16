@@ -1,0 +1,6 @@
+\contentsline {section}{Introduction}{2}{section*.2}%
+\contentsline {section}{Data and Methodology}{2}{section*.3}%
+\contentsline {section}{Results and Discussion}{2}{section*.4}%
+\contentsline {section}{Conclusion}{2}{section*.5}%
+\contentsline {section}{Future Work}{2}{section*.6}%
+\contentsline {section}{References}{2}{section*.7}%
