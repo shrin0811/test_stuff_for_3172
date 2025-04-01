@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage{a4wide}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -16,21 +17,71 @@
     \centering
     {\Huge \textbf{SP3172 - Report Draft 1}}\\[1.5cm]
     {\Large \textbf{Shrinjana Ghosh}}\\[0.5cm]
-    {\large Under the guidance of Dr. Xin Rong Chua}\\[0.5cm]
+    {\large Mentored by Guan Xin and Russell Yap Ker Han}\\[0.25cm]
+    {\large Under the supervision of Dr. Xin Rong Chua and Dr. Linda Sellou}\\[0.5cm]
     {\large January - April 2025}\\[3cm]
     \vfill
+
+
 \end{titlepage}
 
 % Main Content
 \tableofcontents
 \newpage
 
+%% Important note: detailed meteorological/physical explanations that do not really add much to the narrative should
+%% ideally be a part of the appendix
+
+\begin{abstract}
+    Extreme weather, potentially intensified by climate change, makes Singapore vulnerable to both inland (caused by excessive rainfall) and coastal floods
+    (caused by increase in sea level). The combined effect of high speed winds over the South China Sea (SCS) and spring tides have been linked to 
+    both coastal and flash floods. These SCS winds are characteristic of the boreal winter monsoon cold surge (CS) events that 
+    occur over the Maritime Continent during the northeast (NE) monsoon season. The primary motivation of this study is to quantify the role that CS events
+    play on extreme tide events. The study uses research-quality water level from tide gauges, obtained from
+    the University of Hawaii Sea Level Centre from $1990-2013$ along the 
+    Western Maritime Continent. Further analysis of the data has allowed us to quantify `extreme tides' (water levels above the 99\textsuperscript{th} percentile), 
+    the co-occurrences of CS events and `extreme tides', along with the
+    average increase in water levels associated with CS events. Henceforth, we develop and test a model based on
+    water level, wind speed and pressure level anomalies, along with other climatic variables associated with CS events to predict the daily maximum and extreme water levels. 
+    The development of this model aims to improve our understanding of surge-induced flash floods, with implications for disaster preparedness in South-East Asia, thus aiding
+    government agencies in risk mitigation for vulnerable areas and early warning systems.
+\end{abstract}
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
-Hello World!
+\begin{itemize}
+    \item A short overview of the monsoon season in Singapore
+    \item What are cold surges? What is the definition of this that we are relying on? 
+    \item Potential implications and impact of the flooding season in Singapore (societal relevance) - 
+    can be a hook to the Introduction
+    \item Gradually develop the outline with the theoretical basis of the literature (use your mid-term presentation)
+    for reference
+    \item Summary of the context, and then gradually scope it down to your research gap (i.e. a lack of numerical relation between 
+    cold surges and floods in Singapore): this should ideally segue into the next portion about the methods used to address the research 
+    gap in question.
+    %%% make clearer logical links between mathematical and meteorological concepts
+\end{itemize}
 
 \section*{Data and Methodology}
-\addcontentsline{toc}{section}{Data and Methodology}
+\addcontentsline{toc}{section}{Methods}
+\begin{itemize}
+    \item Tides have two main signals - deterministic and stochastic.
+    \item The deterministic signals can be predicted by the phase of the celestial bodies around the Earth at that position of the tide gauge
+    \item Removing this signal from our net tide data will allow us to obtain the pure stochastic signals - i.e water levels influenced
+    by winds, rainfall, variation in temperature, etc. 
+    \item The stochastic signal is of concern to us.
+    \item We tried using two forms of data - one of hourly frequency from the University of Hawaii Sea Level Centre (citation)
+    and the other was of six minute frequency from Maritime Port Authority. 
+    \item Both data sets were processed through the UTide Package (citation).
+    \item Reason for choosing both - MPA gives us data around singapore, while UHSLC gives us data around Peninsular Malaysia. Taking data from gives us some level of
+    reproducibiliity around the area. 
+    \item Used the QA/QC manual to clean the data (cite the manual)
+    \item After the QA/QC, the cleaned data was passed to the software through which we can separate the tidal and stochastic signals.
+    \item Taking ERA5 re-analysis wind-speed and mean sea level pressure data, we calculate their daily area-weighted average, as has been used in
+    Lim et al (2017) (look up citation format), and in Singapore's third climate change study V3 (citation needed) using CDO (citation needed).
+    \item Using these processed data sets we were able to develop a multivariate linear regression model (will test other models and then check for robustness - I think this 
+    analysis should be in the next section) which allows us to predict the correlation between extreme water levels that result in nuisance flooding events and the associated
+    weather phenomena.
+\end{itemize}
 
 \section*{Results and Discussion}
 \addcontentsline{toc}{section}{Results and Discussion}
