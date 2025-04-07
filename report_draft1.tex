@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{multicol}
 \usepackage{a4wide}
 \usepackage{hyperref}
@@ -54,7 +55,7 @@
     \addcontentsline{toc}{section}{Introduction}
     \begin{paragraph}
         \noindent Singapore, located at the southern tip of peninsular Malaysia, has a tropical climate, which can be divided into 
-        four primary climatic periods \cite{tkalich_storm_2013}(cite V3 report). Among them, the northeast (NE) monsoon between November-February and southwest (SW) monsoon
+        four primary climatic periods (cite V3 report). Among them, the northeast (NE) monsoon between November-February and southwest (SW) monsoon
         provide the area with rainfall. Between November-February, northern continental Asia faces extremely low temperatures, thus causing 
         cold air surges towards the South China Sea. The cold air is further warmed by the seas, thus bringing rainfall to the tropics, popularly known as 
         monsoon surges (V3 report). These cold air surges are a key feature of the boreal winter monsoons, further strengthened by the presence of the Madden Julian Oscillation (Chang et al., 2005, Lim et al., 2017).
@@ -68,85 +69,102 @@
     
     \section*{Data and Methodology}
     \addcontentsline{toc}{section}{Data and Methodology}
-    \begin{itemize}
-        \item Tides have two main signals - deterministic and stochastic.
-        \item The deterministic signals can be predicted by the phase of the celestial bodies around the Earth at that position of the tide gauge
-        \item Removing this signal from our net tide data will allow us to obtain the pure stochastic signals - i.e water levels influenced
-        by winds, rainfall, variation in temperature, etc. 
-        \item The stochastic signal is of concern to us.
-        \item We tried using two forms of data - one of hourly frequency from the University of Hawaii Sea Level Centre (citation)
-        and the other was of six minute frequency from Maritime Port Authority. 
-        \item Both data sets were processed through the UTide Package (citation).
-        \item Reason for choosing both - MPA gives us data around singapore, while UHSLC gives us data around Peninsular Malaysia. Taking data from gives us some level of
-        reproducibiliity around the area. 
-        \item Used the QA/QC manual to clean the data (cite the manual)
-        \item After the QA/QC, the cleaned data was passed to the software through which we can separate the tidal and stochastic signals.
-        \item Taking ERA5 re-analysis wind-speed and mean sea level pressure data, we calculate their daily area-weighted average, as has been used in
-        Lim et al (2017) (look up citation format), and in Singapore's third climate change study V3 (citation needed) using CDO (citation needed).
-        \item Using these processed data sets we were able to develop a multivariate linear regression model (will test other models and then check for robustness - I think this 
-        analysis should be in the next section) which allows us to predict the correlation between extreme water levels that result in nuisance flooding events and the associated
-        weather phenomena.
-        % Due to data restrictions - tested for both local and regional stations 
-        % Total water leve; = tide (deterministic) + residual (stochastic) water level
-    \end{itemize}
+    \begin{paragraph}
+        \noindent The term `tides' can be restricted to the vertical rise and fall of water that occurs twice a day, best observed on a coast, a breakwater or a pier (Hicks, 2006). In the same document, the author goes on to add that apart from terrestrial factors such as irregular ocean depths (known as `bathymetry'), interactions of ocean waters with continents, etc., unpredictable meteorological factors such as storms, typhoons, cyclones, wind surges, rain and barometric pressure can bring about major differences between the observed and the predicted tides. 
+    \end{paragraph}
+    \begin{paragraph}
+        \noindent The usual flow of analysing tides is given below: 
+        (add flowchart). In order to separate the tidal signals from those caused by meteorological factors (henceforth called deterministic and stochastic signals, respectively), we use the MATLAB package UTide (citation needed). The source code for the data processing pipeline is given \href{https://github.com/shrin0811/test_stuff_for_3172}{here}. Ideally, harmonic analysis is done with data of higher frequency (for example, the Maritime Port Authority of Singapore collects data with sea level data with a six minute frequency), but due to computational and legal restrictions, could not be presented and analysed in this study.  
+    \end{paragraph}
+    \begin{paragraph}
+        \noindent We analysed seven 
+    \end{paragraph}
+    \end{multicols}
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=0.75\linewidth]{Figures/locations_map.png}
+        \caption{Map of tide gauges selected}
+        \label{fig:enter-label}
+    \end{figure*}
+    
+     \begin{center}
+        \begin{tabular}{||c c c||} 
+         \hline
+         Location & Lat/Lon & Range of Data Available \\ [0.5ex] 
+         \hline\hline
+         Cendering & $5.265^\circ N$/$103.187^\circ E$ & 1984-2015 \\ 
+         \hline
+         Geting & $3.975^\circ N$/$103.43^\circ E$ & 1986-2015 \\
+         \hline
+         Kuantan & $5.265^\circ N$/$103.187^\circ E$ & 1983-2015 \\
+         \hline
+         Johor Baharu & $1.462^\circ N$/$103.792^\circ E$ &  1983-2013 \\
+         \hline
+         Sedili & $1.932^\circ N$/$104.115^\circ E$ & 1986-2015 \\
+         \hline
+         Tioman & $2.807^\circ N$/$104.14^\circ E$ & 1985-2015  \\
+         \hline
+         Tanjong Pagar & $1.262^\circ N$/$103.853^\circ E$ &  1984-2018 \\ [1ex]
+         \hline
+        \end{tabular}
+        \end{center}
+
+        \begin{figure*}[h]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Figures/D1_D2_map.png}
+        \caption{Regions of the South China Sea that were used to calculate and flag surge days}
+        \label{fig:enter-label}
+    \end{figure*}
+
     
     \section*{Results and Discussion}
     \addcontentsline{toc}{section}{Results and Discussion}
+
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=\linewidth]{Figures/Time Series for Total Water Level at Tanjong Pagar.png}
+        \caption{Mean Sea Level at Tanjong Pagar station}
+        \label{fig:enter-label}
+    \end{figure*}
+
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=\linewidth]{Figures/TP_Constituents.png}
+        \caption{Tidal Constituents at Tanjong Pagar station}
+        \label{fig:enter-label}
+    \end{figure*}
+
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=\linewidth]{Figures/Time Series for Tidal Level at Tanjong Pagar.png}
+        \caption{Predicted Tidal Levels at Tanjong Pagar station}
+        \label{fig:enter-label}
+    \end{figure*}
+
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=\linewidth]{Figures/Time Series of Hourly Tanjong Pagar Data (Residual).png}
+        \caption{Residual (stochastic) Water Levels at Tanjong Pagar Station}
+        \label{fig:enter-label}
+    \end{figure*}
+
     %time series plots: total water level, predicted water level, residual water level - put in three separate plots
+
+    \begin{figure*}[h]
+        \centering
+        \includegraphics[width=\linewidth]{Figures/99th_percentile_all_locations.png}
+        \caption{Comparison of predicted and observed values across Malaysian gauges using a cubic polynomial fit}
+        \label{fig:enter-label}
+    \end{figure*}
     
-    %constituents plots
-    % 7 - 10 key figures
-    This is for the Ridge regression model - to handle datasets, whose dependent variables have a high collinearity.
-    \begin{center}
-        \begin{tabular}{||c c c||} 
-         \hline
-         Location & RMSE & R-squared \\ [0.5ex] 
-         \hline\hline
-         Cendering & 118.4696 & 0.2578 \\ 
-         \hline
-         Geting & 159.6380 & 0.1236 \\
-         \hline
-         Kuantan & 102.3150 & 0.2087 \\
-         \hline
-         Johor Baharu & 104.1754 & 0.2697 \\
-         \hline
-         Sedili & 124.1224 & 0.1677 \\ 
-         \hline
-         Tioman & 96.9017 & 0.2386 \\
-         \hline
-         Tanjong Pagar & 104.4715 & 0.1823 \\ [1ex]
-         \hline
-        \end{tabular}
-        \end{center}
-    This is for a quadratic fit model.
-    \begin{center}
-        \begin{tabular}{||c c c||} 
-         \hline
-         Location & RMSE & R-squared \\ [0.5ex] 
-         \hline\hline
-         Cendering & 110.267 & 0.290 \\ 
-         \hline
-         Geting & 156.548 & 0.195 \\
-         \hline
-         Kuantan & 101.374 & 0.281 \\
-         \hline
-         Johor Baharu & 96.557 &  0.289 \\
-         \hline
-         Sedili & 114.041 & 0.280 \\
-         \hline
-         Tioman & 99.418 & 0.279  \\
-         \hline
-         Tanjong Pagar & 94.459 &  0.224 \\ [1ex]
-         \hline
-        \end{tabular}
-        \end{center}
-    \section*{Conclusion}
+    \newpage
+   \section*{Conclusion}
     \addcontentsline{toc}{section}{Conclusion}
-    
+    \newpage
     \section*{Future Work}
     \addcontentsline{toc}{section}{Future Work}
      % <- This now properly ends the 2-column layout
-\end{multicols}
+
 \newpage
 \section*{References}
 \printbibliography
