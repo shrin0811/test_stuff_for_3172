@@ -1,6 +1,8 @@
 \contentsline {section}{Introduction}{2}{section*.2}%
-\contentsline {section}{Methods}{2}{section*.3}%
-\contentsline {section}{Results and Discussion}{3}{section*.4}%
-\contentsline {section}{Conclusion}{3}{section*.5}%
-\contentsline {section}{Future Work}{3}{section*.6}%
-\contentsline {section}{References}{3}{section*.7}%
+\contentsline {paragraph}{\noindent }{2}{section*.3}%
+\contentsline {paragraph}{\noindent }{2}{section*.4}%
+\contentsline {section}{Data and Methodology}{3}{section*.5}%
+\contentsline {section}{Results and Discussion}{3}{section*.6}%
+\contentsline {section}{Conclusion}{4}{section*.7}%
+\contentsline {section}{Future Work}{4}{section*.8}%
+\contentsline {section}{References}{5}{section*.9}%

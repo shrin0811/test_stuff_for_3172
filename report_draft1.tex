@@ -1,6 +1,7 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath, amssymb}
 \usepackage{graphicx}
+\usepackage{multicol}
 \usepackage{a4wide}
 \usepackage{hyperref}
 \hypersetup{
@@ -9,7 +10,8 @@
     filecolor=magenta,      
     urlcolor=blue
 }
-
+\usepackage[backend=biber,style=authoryear]{biblatex}
+\addbibresource{references.bib}
 \begin{document}
 
 % Title Page
@@ -46,58 +48,115 @@
     The development of this model aims to improve our understanding of surge-induced flash floods, with implications for disaster preparedness in South-East Asia, thus aiding
     government agencies in risk mitigation for vulnerable areas and early warning systems.
 \end{abstract}
-\section*{Introduction}
-\addcontentsline{toc}{section}{Introduction}
-\begin{itemize}
-    \item A short overview of the monsoon season in Singapore
-    \item What are cold surges? What is the definition of this that we are relying on? 
-    \item Potential implications and impact of the flooding season in Singapore (societal relevance) - 
-    can be a hook to the Introduction
-    \item Gradually develop the outline with the theoretical basis of the literature (use your mid-term presentation)
-    for reference
-    \item Summary of the context, and then gradually scope it down to your research gap (i.e. a lack of numerical relation between 
-    cold surges and floods in Singapore): this should ideally segue into the next portion about the methods used to address the research 
-    gap in question.
-    %%% make clearer logical links between mathematical and meteorological concepts
-\end{itemize}
 
-\section*{Data and Methodology}
-\addcontentsline{toc}{section}{Methods}
-\begin{itemize}
-    \item Tides have two main signals - deterministic and stochastic.
-    \item The deterministic signals can be predicted by the phase of the celestial bodies around the Earth at that position of the tide gauge
-    \item Removing this signal from our net tide data will allow us to obtain the pure stochastic signals - i.e water levels influenced
-    by winds, rainfall, variation in temperature, etc. 
-    \item The stochastic signal is of concern to us.
-    \item We tried using two forms of data - one of hourly frequency from the University of Hawaii Sea Level Centre (citation)
-    and the other was of six minute frequency from Maritime Port Authority. 
-    \item Both data sets were processed through the UTide Package (citation).
-    \item Reason for choosing both - MPA gives us data around singapore, while UHSLC gives us data around Peninsular Malaysia. Taking data from gives us some level of
-    reproducibiliity around the area. 
-    \item Used the QA/QC manual to clean the data (cite the manual)
-    \item After the QA/QC, the cleaned data was passed to the software through which we can separate the tidal and stochastic signals.
-    \item Taking ERA5 re-analysis wind-speed and mean sea level pressure data, we calculate their daily area-weighted average, as has been used in
-    Lim et al (2017) (look up citation format), and in Singapore's third climate change study V3 (citation needed) using CDO (citation needed).
-    \item Using these processed data sets we were able to develop a multivariate linear regression model (will test other models and then check for robustness - I think this 
-    analysis should be in the next section) which allows us to predict the correlation between extreme water levels that result in nuisance flooding events and the associated
-    weather phenomena.
-    % Due to data restrictions - tested for both local and regional stations 
-    % Total water leve; = tide (deterministic) + residual (stochastic) water level
-\end{itemize}
-
-\section*{Results and Discussion}
-\addcontentsline{toc}{section}{Results and Discussion}
-%time series plots: total water level, predicted water level, residual water level - put in three separate plots
-
-%constituents plots
-% 7 - 10 key figures 
-\section*{Conclusion}
-\addcontentsline{toc}{section}{Conclusion}
-
-\section*{Future Work}
-\addcontentsline{toc}{section}{Future Work}
-
+\begin{multicols}{2}
+    \section*{Introduction}
+    \addcontentsline{toc}{section}{Introduction}
+    \begin{paragraph}
+        \noindent Singapore, located at the southern tip of peninsular Malaysia, has a tropical climate, which can be divided into 
+        four primary climatic periods \cite{tkalich_storm_2013}(cite V3 report). Among them, the northeast (NE) monsoon between November-February and southwest (SW) monsoon
+        provide the area with rainfall. Between November-February, northern continental Asia faces extremely low temperatures, thus causing 
+        cold air surges towards the South China Sea. The cold air is further warmed by the seas, thus bringing rainfall to the tropics, popularly known as 
+        monsoon surges (V3 report). These cold air surges are a key feature of the boreal winter monsoons, further strengthened by the presence of the Madden Julian Oscillation (Chang et al., 2005, Lim et al., 2017).
+    \end{paragraph}
+    \begin{paragraph}
+        \noindent Coastal low-lying areas in peninsular Malaysia are susceptible to flooding caused by a coincidence of high tides and extreme precipitation (Lian et al., 2017), which have often overwhelmed
+        urban and rural drainage systems, as was observed in three separate surge events between January to March in 2025. Local mean sea levels (MSL), measured using tide gauge stations in coastal regions, are not only affected by
+        large=scale global and regional changes (such as mass changes in ice sheets and glaciers, ocean currents, density), but also by tides and surges (V3, 2022). While tides are deterministic and can be predicted by the gravitational attraction based on the 
+        positions of the sun and the moon (Hicks, 2006), local and regional climatic effects tend to be more stochastic, and cannot be easily predicted. 
+    \end{paragraph}
+    
+    \section*{Data and Methodology}
+    \addcontentsline{toc}{section}{Data and Methodology}
+    \begin{itemize}
+        \item Tides have two main signals - deterministic and stochastic.
+        \item The deterministic signals can be predicted by the phase of the celestial bodies around the Earth at that position of the tide gauge
+        \item Removing this signal from our net tide data will allow us to obtain the pure stochastic signals - i.e water levels influenced
+        by winds, rainfall, variation in temperature, etc. 
+        \item The stochastic signal is of concern to us.
+        \item We tried using two forms of data - one of hourly frequency from the University of Hawaii Sea Level Centre (citation)
+        and the other was of six minute frequency from Maritime Port Authority. 
+        \item Both data sets were processed through the UTide Package (citation).
+        \item Reason for choosing both - MPA gives us data around singapore, while UHSLC gives us data around Peninsular Malaysia. Taking data from gives us some level of
+        reproducibiliity around the area. 
+        \item Used the QA/QC manual to clean the data (cite the manual)
+        \item After the QA/QC, the cleaned data was passed to the software through which we can separate the tidal and stochastic signals.
+        \item Taking ERA5 re-analysis wind-speed and mean sea level pressure data, we calculate their daily area-weighted average, as has been used in
+        Lim et al (2017) (look up citation format), and in Singapore's third climate change study V3 (citation needed) using CDO (citation needed).
+        \item Using these processed data sets we were able to develop a multivariate linear regression model (will test other models and then check for robustness - I think this 
+        analysis should be in the next section) which allows us to predict the correlation between extreme water levels that result in nuisance flooding events and the associated
+        weather phenomena.
+        % Due to data restrictions - tested for both local and regional stations 
+        % Total water leve; = tide (deterministic) + residual (stochastic) water level
+    \end{itemize}
+    
+    \section*{Results and Discussion}
+    \addcontentsline{toc}{section}{Results and Discussion}
+    %time series plots: total water level, predicted water level, residual water level - put in three separate plots
+    
+    %constituents plots
+    % 7 - 10 key figures
+    This is for the Ridge regression model - to handle datasets, whose dependent variables have a high collinearity.
+    \begin{center}
+        \begin{tabular}{||c c c||} 
+         \hline
+         Location & RMSE & R-squared \\ [0.5ex] 
+         \hline\hline
+         Cendering & 118.4696 & 0.2578 \\ 
+         \hline
+         Geting & 159.6380 & 0.1236 \\
+         \hline
+         Kuantan & 102.3150 & 0.2087 \\
+         \hline
+         Johor Baharu & 104.1754 & 0.2697 \\
+         \hline
+         Sedili & 124.1224 & 0.1677 \\ 
+         \hline
+         Tioman & 96.9017 & 0.2386 \\
+         \hline
+         Tanjong Pagar & 104.4715 & 0.1823 \\ [1ex]
+         \hline
+        \end{tabular}
+        \end{center}
+    This is for a quadratic fit model.
+    \begin{center}
+        \begin{tabular}{||c c c||} 
+         \hline
+         Location & RMSE & R-squared \\ [0.5ex] 
+         \hline\hline
+         Cendering & 110.267 & 0.290 \\ 
+         \hline
+         Geting & 156.548 & 0.195 \\
+         \hline
+         Kuantan & 101.374 & 0.281 \\
+         \hline
+         Johor Baharu & 96.557 &  0.289 \\
+         \hline
+         Sedili & 114.041 & 0.280 \\
+         \hline
+         Tioman & 99.418 & 0.279  \\
+         \hline
+         Tanjong Pagar & 94.459 &  0.224 \\ [1ex]
+         \hline
+        \end{tabular}
+        \end{center}
+    \section*{Conclusion}
+    \addcontentsline{toc}{section}{Conclusion}
+    
+    \section*{Future Work}
+    \addcontentsline{toc}{section}{Future Work}
+     % <- This now properly ends the 2-column layout
+\end{multicols}
+\newpage
 \section*{References}
+\printbibliography
 \addcontentsline{toc}{section}{References}
-
+Chang, C.-P., Harr, P.A. and Chen, H.-J. (2005) 
+Synoptic disturbances over the equatorial South China Sea and Western Maritime Continent during Boreal Winter, AMETSOC. (Accessed: 06 April 2025).
+\newline \newline Hicks, S.D. and Szabados, M.W. (2006) 
+Understanding tides. Silver Spring, Md: U.S. Dept. of Commerce, National Oceanic and Atmospheric Administration, National Ocean Service, Center for Operational Oceanographic Products and Services. 
+\newline \newline Lian, J. et al. (2017) 
+Optimal management of the flooding risk caused by the joint occurrence of extreme rainfall and high tide level in a coastal city - Natural Hazards, SpringerLink. (Accessed: 06 April 2025). 
+\newline \newline Lim, S.Y. et al. (2017) 
+Impacts of boreal winter monsoon cold surges and the interaction with MJO on Southeast Asia rainfall, AMETSOC. (Accessed: 06 April 2025).  
 \end{document}
